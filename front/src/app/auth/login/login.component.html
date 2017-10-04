@@ -1,0 +1,10 @@
+<div id="login_form">
+	<label>Username:</label>
+	<input [(ngModel)]="model.username" />
+	<br>
+	<label>Password:</label>
+	<input type="password" [(ngModel)]="model.password" />
+	<br>
+	<button type="submit" (click)="onSubmit()" >login</button>
+	{{message}}
+</div>

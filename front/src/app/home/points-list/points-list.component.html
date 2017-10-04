@@ -1,0 +1,13 @@
+<p>
+  Points:
+</p>
+<div *ngIf="chekedPoints">
+	<table>
+	<tr>
+		<td>X</td><td>Y</td><td>R</td><td>inArea</td>
+	</tr>
+		<tr *ngFor="let point of chekedPoints">
+		<td>{{point.x}}</td><td>{{point.y}}</td><td>{{point.r}}</td><td>{{point.inAria}}</td>
+		</tr>
+	</table>
+</div>

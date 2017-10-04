@@ -1,0 +1,14 @@
+<div id="auth">
+	<div *ngIf="loginForm else registerform" id="login">
+		<button (click)="onChange()">Register Form</button>
+		<h3><label>Login:</label></h3>
+		<app-login></app-login>	
+	</div>
+	<ng-template #registerform>
+	<div id="register">
+		<button (click)="onChange()">Login Form</button>
+		<h3><label>Register:</label></h3>
+		<app-register></app-register>	
+	</div>
+	</ng-template>
+</div>

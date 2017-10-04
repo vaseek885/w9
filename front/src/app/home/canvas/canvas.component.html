@@ -1,0 +1,18 @@
+<canvas #myCanvas width="540" height="540" (click)="clicked($event)">
+</canvas>
+<br>
+<label>X</label>
+<select  [(ngModel)]="x">
+  <option *ngFor="let x of xValues" [ngValue]="x">{{x}}</option>
+</select>
+<label>Y</label>
+<select  [(ngModel)]="y">
+  <option *ngFor="let y of yValues" [ngValue]="y">{{y}}</option>
+</select>
+<label>R</label>
+<select (change)="rChange()" [(ngModel)]="r">
+  <option *ngFor="let r of rValues" [ngValue]="r">{{r}}</option>
+</select>
+<button (click)="onSumbit()">Send point</button>
+<button (click)="deleteAll()">Delete all</button>
+<app-points-list [chekedPoints]="points"></app-points-list>
