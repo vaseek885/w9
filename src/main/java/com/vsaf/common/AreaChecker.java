@@ -1,6 +1,6 @@
 package com.vsaf.common;
 
-import com.vsaf.common.DataBaseOperations;
+import com.vsaf.service.DataBaseOperations;
 
 import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
