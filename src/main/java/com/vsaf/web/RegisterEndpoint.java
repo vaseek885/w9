@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.*;
 // import java.util.List;
 
 @Stateless
-@Path("/auth")
+@Path("/new")
 public class RegisterEndpoint {
 
 	@EJB 
@@ -34,10 +34,10 @@ public class RegisterEndpoint {
 	@Path("/register")
 	@Produces({ MediaType.TEXT_PLAIN })
 	// public Response register(
-	public Response register(RequestBody req) {
-		System.out.printf("Req name:" + req.username + "pwd + " + req.password);
+	public Response register(RegRequestBody req) {
+		System.out.printf("register: name:" + req.username + "pwd + " + req.password);
 		if(req.username != null && req.password != null) {
-			short result = regserv.register(req.username, req.password);
+			int result = regserv.register(req.username, req.password);
 			switch(result){
 				case 0:
 					//registered
@@ -65,7 +65,7 @@ public class RegisterEndpoint {
 }
 
 @XmlRootElement
-final class RequestBody {
+final class RegRequestBody {
 	@XmlElement String password;
     @XmlElement String username;
 }

@@ -16,7 +16,7 @@ export class LogoutComponent implements OnInit {
     }
 
     ngOnInit(): void {
-       this.username = this.authService.username;
+       this.username = this.authService.user.username;
     }
 
     onSubmit(): void {

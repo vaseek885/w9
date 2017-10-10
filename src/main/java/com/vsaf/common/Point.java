@@ -1,8 +1,8 @@
 package com.vsaf.common;
 
-import java.io.Serializable;
 
-public class Point implements Serializable{
+
+public class Point{
 
     private long id;
 
@@ -13,7 +13,7 @@ public class Point implements Serializable{
     private float y;
 
 
-    private boolean included;
+    private Boolean included;
 
 
     private float radius;
@@ -54,11 +54,11 @@ public class Point implements Serializable{
         return x;
     }
 
-    public void setIncluded(boolean included) {
+    public void setIncluded(Boolean included) {
         this.included = included;
     }
 
-    public boolean isIncluded() {
+    public Boolean isIncluded() {
         return included;
     }
 
@@ -71,7 +71,7 @@ public class Point implements Serializable{
     }
 
     @Override
-    public boolean equals(Object obj){
+    public Boolean equals(Object obj){
         Point p = null;
         try {
             p = (Point)obj;
@@ -84,6 +84,12 @@ public class Point implements Serializable{
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "{\"x\":" + this.x + ", \"y\":" + this.y + ", \"r\":" + this.radius + ", \"included\":" + this.included + "}";
+    }
+
     @Override
     public int hashCode(){
         return (int)(x*1000000+y*1000 + radius);

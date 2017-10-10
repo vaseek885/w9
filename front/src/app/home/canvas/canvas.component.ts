@@ -61,7 +61,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
   clicked(event): void {
      console.log(event.offsetX);
      console.log(event.offsetY);
-     const point: Point = new Point((event.offsetX - this.w / 2) / this.scaleX, (-event.offsetY + this.w / 2) / this.scaleY, this.r, '');
+     const point: Point = new Point((event.offsetX - this.w / 2) / this.scaleX, (-event.offsetY + this.w / 2) / this.scaleY, this.r, false);
      this.authservice.addPoint(point).then((response) => {
       this.drawPoint(response.json() as Point); 
      })
@@ -88,7 +88,7 @@ export class CanvasComponent implements OnInit, OnDestroy {
   }
   
   drawPoint(point: Point): void {
-    if (point.inAria) {
+    if (point.included) {
       this.cont.fillStyle = '#00ff00';
     } else {
       this.cont.fillStyle = 'red';
@@ -127,7 +127,8 @@ export class CanvasComponent implements OnInit, OnDestroy {
     this.cont.lineTo(this.r * this.scaleX / 2, -this.r * this.scaleY);
     this.cont.lineTo(this.r * this.scaleX / 2, 0);
     this.cont.lineTo(0, this.r * this.scaleY);
-     this.cont.arc(0, 0, this.r * this.scaleX, Math.PI / 2, Math.PI);
+    this.cont.lineTo(0,0);
+     this.cont.arc(0, 0, this.r * this.scaleX, Math.PI , 1.5 * Math.PI);
      this.cont.lineTo(0, 0);
     this.cont.fill();
     // Axis

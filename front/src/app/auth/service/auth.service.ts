@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { User } from '../../core/user';
+import { PointPayload } from '../../core/pointpayload';
 import { HttpHeaders } from '@angular/common/http';
 import { API_URL } from '../../core/api';
 import { Point } from '../../core/point'
@@ -18,42 +19,23 @@ export class AuthService {
   
   public isAuth = false; 
   private accessToken: String;
-  public username = '';
+  public user;
   
   login(user: User): Promise<boolean> {
-      const header = new Headers();
-      header.append('Username', user.username as string );
-      header.append('Password', user.password as string );
-      const opt = new RequestOptions();
-      opt.headers = header;
-      return this.http.post(this.apiURL + 'auth/login', user.toJson(), opt)
+      return this.http.post(this.apiURL + 'auth/login', user)
               .toPromise()
-              .then(response => {this.accessToken =  response.headers.get('Expires');
+              .then(response => {
                 this.isAuth = true;
-                this.username = user.username as string;
+                this.user = user;
                 return this.isAuth;
                 })
         .catch(err => {this.isAuth = false});
    }
-  getUser(user: User): Promise<any> {
-      const header = new Headers();
-      console.log(this.accessToken);
-      header.append('Token', this.accessToken as string );
-      const opt = new RequestOptions();
-    opt.headers = header;
-     
-      // this.header.append('Username', user.name as string);
-      // this.header.append('Password', user.password as string);
-      return this.http.get(this.apiURL + 'user', opt)
-              .toPromise()
-              .then(response => { const headers = response.headers; 
-                console.log(headers.get('Expires')); 
-              this.accessToken = headers.get('Expires'); });
-   }
+  
   
   
   register(user: User): Promise<boolean> {
-      return this.http.post(this.apiURL + 'auth/register', user)
+      return this.http.post(this.apiURL + 'new/register', user)
             .toPromise()
         .then(() => true);
   }
@@ -67,7 +49,7 @@ export class AuthService {
     header.append('Token', this.accessToken as string );
     const opt = new RequestOptions();
     opt.headers = header;
-    return this.http.get(this.apiURL + 'point', opt)
+    return this.http.get(this.apiURL + 'point/getpoint', opt)
               .toPromise()
               .then(response => { const headers = response.headers; 
               console.log(response); 
@@ -80,11 +62,10 @@ export class AuthService {
       } );
   }
   addPoint(point: Point): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
-    return this.http.post(this.apiURL + 'point', point, opt)
+    
+    // var payload = {'username':this.user, 'point':point};
+    var payload = new PointPayload(point.x,point.y,point.r,false,this.user.username,this.user.password);
+    return this.http.post(this.apiURL + 'point/addpoint',payload)
               .toPromise()
               .then(response => { const headers = response.headers; 
               console.log(response); 
@@ -102,7 +83,7 @@ export class AuthService {
     header.append('Token', this.accessToken as string );
     const opt = new RequestOptions();
     opt.headers = header;
-    return this.http.delete(this.apiURL + 'delete' , opt)
+    return this.http.delete(this.apiURL + 'point/deleteall' , opt)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response);
@@ -120,7 +101,7 @@ export class AuthService {
     header.append('Token', this.accessToken as string );
     const opt = new RequestOptions();
     opt.headers = header;
-    return this.http.delete(this.apiURL + 'point' + Point.toString(point) , opt)
+    return this.http.post(this.apiURL + 'point/delete' ,point)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response);
@@ -138,7 +119,7 @@ export class AuthService {
     header.append('Token', this.accessToken as string );
     const opt = new RequestOptions();
     opt.headers = header;
-    return this.http.head(this.apiURL + 'point' + '?r=' + r, opt)
+    return this.http.post(this.apiURL + 'point/update', r, opt)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response);
@@ -156,7 +137,7 @@ export class AuthService {
     header.append('Token', this.accessToken as string );
     const opt = new RequestOptions();
     opt.headers = header;
-    return this.http.get(this.apiURL + 'r', opt)
+    return this.http.get(this.apiURL + 'point/r', opt)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response); 

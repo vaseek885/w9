@@ -1,10 +1,6 @@
 package com.vsaf.common;
 
-
-import java.io.Serializable;
-
-
-public class Input implements Serializable {
+public class Input {
     private float x;
     private float y;
     private float r = 1;
