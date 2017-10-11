@@ -45,11 +45,8 @@ export class AuthService {
     this.isAuth = false;
   }
   getPoint(): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
-    return this.http.get(this.apiURL + 'point/getpoint', opt)
+    
+    return this.http.post(this.apiURL + 'point/get', this.user )
               .toPromise()
               .then(response => { const headers = response.headers; 
               console.log(response); 
@@ -79,11 +76,7 @@ export class AuthService {
       } );
   }
   deleteAll(): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
-    return this.http.delete(this.apiURL + 'point/deleteall' , opt)
+    return this.http.post(this.apiURL + 'point/deleteall' , this.user)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response);
@@ -97,10 +90,7 @@ export class AuthService {
       } );
   }
   deletePoint(point: Point): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
+
     return this.http.post(this.apiURL + 'point/delete' ,point)
               .toPromise()
               .then(response => { const headers = response.headers;
@@ -115,11 +105,8 @@ export class AuthService {
       } );
   }
   updatePoint(r: number): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
-    return this.http.post(this.apiURL + 'point/update', r, opt)
+    var payload = new PointPayload(0,0,r,false,this.user.username,this.user.password);
+    return this.http.post(this.apiURL + 'point/update', payload)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response);
@@ -133,11 +120,8 @@ export class AuthService {
       } );
   }
   getR(): Promise<any> {
-    const header = new Headers();
-    header.append('Token', this.accessToken as string );
-    const opt = new RequestOptions();
-    opt.headers = header;
-    return this.http.get(this.apiURL + 'point/r', opt)
+    
+    return this.http.post(this.apiURL + 'point/r', this.user)
               .toPromise()
               .then(response => { const headers = response.headers;
               console.log(response); 

@@ -29,6 +29,14 @@ public class Point{
         id = hashCode();
     }
 
+    public Point(float x, float y, float r, Boolean included){
+        this.x = x;
+        this.y = y;
+        this.radius = r;
+        this.included = included;
+        id = hashCode();
+    }
+
 
     public float getRadius() {
         return radius;
@@ -71,7 +79,7 @@ public class Point{
     }
 
     @Override
-    public Boolean equals(Object obj){
+    public boolean equals(Object obj){
         Point p = null;
         try {
             p = (Point)obj;
