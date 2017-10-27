@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Point } from '../../core/point';
 import { AuthService } from '../../auth/service/auth.service';
-import { R_CHOISES, X_CHOISES, Y_CHOISES } from '../static/choses';
+import { R_CHOISES, X_CHOISES, Y_CHOISES } from '../static/choises';
+
+
 
 @Component({
   selector: 'app-canvas',

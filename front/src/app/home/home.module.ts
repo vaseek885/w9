@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {RadioButtonModule} from 'primeng/primeng';
 
 
 import {HomeComponent} from './home.component';
@@ -15,6 +16,7 @@ import { PointsListComponent } from './points-list/points-list.component';
 @NgModule({
     imports: [ BrowserModule,
        HttpModule,
+       RadioButtonModule,
      FormsModule ],
     providers: [ ],
     declarations: [HomeComponent, LogoutComponent, CanvasComponent, PointsListComponent]
