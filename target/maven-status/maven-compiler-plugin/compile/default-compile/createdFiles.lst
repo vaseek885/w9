@@ -1,0 +1,14 @@
+com/vsaf/web/LogRequestBody.class
+com/vsaf/web/RegisterEndpoint.class
+com/vsaf/common/AreaChecker.class
+com/vsaf/web/PntRequestBody.class
+com/vsaf/web/PointOperations.class
+com/vsaf/common/Point.class
+com/vsaf/common/Input.class
+com/vsaf/web/GetRequestBody.class
+com/vsaf/web/RegRequestBody.class
+com/vsaf/service/RegisterService.class
+com/vsaf/web/LoginEndpoint.class
+com/vsaf/service/DataBaseOperations.class
+com/vsaf/service/LoginService.class
+com/vsaf/service/PointService.class
